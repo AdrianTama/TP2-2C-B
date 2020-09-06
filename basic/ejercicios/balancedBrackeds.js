@@ -1,53 +1,56 @@
 // Complete the isBalanced function below.
-function isBalanced(s) {
 
-function isBalanced(cadena) {
-    const pila = new Stack();
+function isBalanced(s) {
+   
+    var pila = []
     var i = 0
     var equilibrio = true
     var caracter
-    while (i < cadena.length() && equilibrio) {
-        caracter = cadena.charAt(i);
+
+    
+
+    while (i < s.length && equilibrio) {
+        caracter = s.charAt(i);
 
         if (caracter == '(') {
-            pila.push("(");
+            pila.push('(');
         } 
         else {
             if (caracter == '{') {
-                pila.push("{");
+                pila.push('{');
             } 
             else {
                 if (caracter == '[') {
-                    pila.push("[");
+                    pila.push('[');
                 }
                 else {
                     if (caracter == ')' || caracter == '}' || caracter == ']') {
-                        if (!pila.empty()) {
+                        if (!pila.isEmpty) {
                             switch (caracter) {
                                 case ')':
-                                    if (pila.peek().equals("(")) {
+                                    if (peek(pila)==='(') {
                                         pila.pop();
                                     } 
                                     else {
-                                        System.out.println("Falta el parentesis abierto: ( ");
+                                        console.log('Falta el parentesis abierto: (');
                                         equilibrio = false;
-}
+                                    }                                   
                                 break;
                                 case '}':
-                                    if (pila.peek().equals("{")) {
+                                    if (peek(pila)===('{')) {
                                         pila.pop();
                                     } 
                                     else {
-                                        System.out.println("Falta la llave abierta: {");
+                                        console.log('Falta la llave abierta: {');
                                         equilibrio = false;
                                     }
                                 break;
                                 case ']':
-                                    if (pila.peek().equals("[")) {
+                                    if (peek(pila)===('[')) {
                                         pila.pop();
                                     } 
                                     else {
-                                        System.out.println("Falta el corchete abierto: [");
+                                        console.log('Falta el corchete abierto: [');
                                         equilibrio = false;
                                     }
                                 break;
@@ -62,7 +65,7 @@ function isBalanced(cadena) {
         }
         i++;
 }
-    if (pila.isEmpty() && equilibrio) {
+    if (pila.length===0 && equilibrio) {
         return true;
     } 
     else {
@@ -70,11 +73,20 @@ function isBalanced(cadena) {
     }
 }    
 
+// Nos muestra el primer elemento que está en el array
+function peek(pila){
+    return pila[pila.length - 1]
+}
     
 
 
 // TESTS
-//console.log(isBalanced('{[()]}') == 'YES');
-//console.log(isBalanced('{[(])}') == 'NO');
-//console.log(isBalanced('{{[[(())]]}}') == 'YES');
-console.log(isBalanced('{{[[(())]]}}{}()'));
+console.log(isBalanced('{[()]}'))
+console.log('----------------')
+console.log(isBalanced('{[(])}'))
+console.log('----------------')
+console.log(isBalanced('{{[[(())]]}}'))
+console.log('----------------')
+console.log(isBalanced('{{[[(())]]}}{}()'))
+
+
